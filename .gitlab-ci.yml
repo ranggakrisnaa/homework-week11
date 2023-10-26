@@ -28,6 +28,9 @@ build:
     - docker push $REPOSITORY_URL:latest
   only:
     - main
+unit_test:
+  stage: test
+  script:
 
 deploy:
   stage: deploy
@@ -36,3 +39,6 @@ deploy:
     - docker container run -dt -p $PORT:$PORT --name todos-api $REPOSITORY_URL:latest
   only:
     - main
+unit_test:
+  stage: unit_test
+  script: - npm run docker-test 
