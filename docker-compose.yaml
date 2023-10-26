@@ -9,11 +9,11 @@ services:
     image: postgres:14.9-alpine3.18
     restart: always
     ports:
-      - "5439:5439"
+      - "5432:5432"
     environment: 
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
-      - PGPORT=5439
+      - PGPORT=5432
     networks:
       - app-tier
   todos-api:

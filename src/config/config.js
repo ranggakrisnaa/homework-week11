@@ -20,7 +20,6 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST_DOCKER,
     dialect: process.env.DB_DIALECT,
-    port: 5439,
   },
   "docker-test": {
     username: process.env.DB_USER,
@@ -28,7 +27,7 @@ module.exports = {
     database: process.env.DB_NAME_TEST,
     host: process.env.DB_HOST_DOCKER,
     dialect: process.env.DB_DIALECT,
-    port: 5439,
+    port: 5432,
   },
   "production": {
     username: process.env.DB_USER,
