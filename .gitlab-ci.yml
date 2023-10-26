@@ -27,7 +27,7 @@ build:
     - echo "Pushing image..."
     - docker push $REPOSITORY_URL:latest
   only:
-    - master
+    - main
 
 deploy:
   stage: deploy
@@ -35,4 +35,4 @@ deploy:
     - docker stop todos-api || true && docker rm todos-api || true
     - docker container run -dt -p $PORT:$PORT --name todos-api $REPOSITORY_URL:latest
   only:
-    - master
+    - main
