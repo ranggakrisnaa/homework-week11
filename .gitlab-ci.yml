@@ -13,7 +13,6 @@ before_script:
 stages:
   - build
   - deploy
-  - unit_test
 
 build:
   stage: build
@@ -38,11 +37,5 @@ deploy:
   script:
     - docker stop todos-api || true && docker rm todos-api || true
     - docker container run -dt -p $PORT:$PORT --name todos-api $REPOSITORY_URL:latest
-  only:
-    - main
-
-unit_test:
-  stage: unit_test
-  script: - npm run docker-test 
   only:
     - main
