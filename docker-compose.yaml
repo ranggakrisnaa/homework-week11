@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  app-tier: 
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:14.9-alpine3.18
+    restart: always
+    ports:
+      - "5439:5439"
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - PGPORT=5439
+    networks:
+      - app-tier
+  todos-api:
+    restart: on-failure
+    build: .
+    networks:
+      - app-tier
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - NODE_ENV=docker
+
+
