@@ -28,9 +28,6 @@ build:
     - docker push $REPOSITORY_URL:latest
   only:
     - main
-unit_test:
-  stage: test
-  script:
 
 deploy:
   stage: deploy
