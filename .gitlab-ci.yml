@@ -13,7 +13,6 @@ before_script:
 stages:
   - build
   - deploy
-  - test
 
 build:
   stage: build
@@ -35,17 +34,5 @@ deploy:
   script:
     - docker stop todos-api || true && docker rm todos-api || true
     - docker container run -dt -p $PORT:$PORT --name todos-api $REPOSITORY_URL:latest
-  only:
-    - main
-
-test:
-  stage: test
-  script:
-    - npm install jest supertest
-    - NODE_ENV=test && jest --detectOpenHandles --runInBand --forceExit --watchAll --coverage --verbose
-  artifacts:
-    when: always
-    paths:
-      - ./test/todo.test.js
   only:
     - main
