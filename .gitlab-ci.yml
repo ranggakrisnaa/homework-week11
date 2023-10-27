@@ -41,13 +41,11 @@ deploy:
 test:
   stage: test
   script:
-    - bundle install
-    - bundle exec rspec --format progress --format RspecJunitFormatter --out rspec.xml
+    - npm install jest supertest
+    - NODE_ENV=test && jest --detectOpenHandles --runInBand --forceExit --watchAll --coverage --verbose
   artifacts:
     when: always
     paths:
-      - rspec.xml
-    reports:
-      junit: rspec.xml
+      - ./test/todo.test.js
   only:
     - main
