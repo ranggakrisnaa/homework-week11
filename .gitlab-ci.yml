@@ -34,5 +34,6 @@ deploy:
   script:
     - docker stop todos-api || true && docker rm todos-api || true
     - docker container run -dt -p $PORT:$PORT --name todos-api $REPOSITORY_URL:latest
+    - docker image prune -f
   only:
     - main
